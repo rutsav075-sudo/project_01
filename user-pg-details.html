@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sunrise Boys PG — HostelPGDekho</title>
+    <meta name="description" content="Book Sunrise Boys PG in Koramangala, Bangalore. Verified PG with WiFi, AC, food. Starting ₹4,000/mo.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #7C3AED;
+            --primary-dark: #5B21B6;
+            --primary-darker: #4C1D95;
+            --primary-light: #A78BFA;
+            --primary-soft: #EDE9FE;
+            --primary-bg: #F5F3FF;
+            --gradient: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+            --gradient-dark: linear-gradient(135deg, #1E1B4B 0%, #4C1D95 45%, #7C3AED 100%);
+            --gradient-aurora: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #fda085 100%);
+            --accent: #F59E0B;
+            --accent-light: #FEF3C7;
+            --accent-dark: #D97706;
+            --success: #10B981;
+            --success-light: #D1FAE5;
+            --danger: #EF4444;
+            --danger-light: #FEE2E2;
+            --info: #3B82F6;
+            --info-light: #DBEAFE;
+            --white: #FFFFFF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            --glass: rgba(255,255,255,0.65);
+            --glass-border: rgba(255,255,255,0.3);
+            --glass-strong: rgba(255,255,255,0.82);
+            --glass-dark: rgba(17,24,39,0.6);
+            --glass-dark-border: rgba(255,255,255,0.08);
+            --shadow-glass: 0 8px 32px rgba(124,58,237,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
+            --shadow-glass-lg: 0 16px 48px rgba(124,58,237,0.12), inset 0 1px 0 rgba(255,255,255,0.5);
+            --shadow-purple: 0 8px 32px rgba(124,58,237,0.25);
+            --shadow-glow: 0 0 40px rgba(124,58,237,0.15);
+            --radius-sm: 10px;
+            --radius-md: 14px;
+            --radius-lg: 18px;
+            --radius-xl: 22px;
+            --radius-2xl: 28px;
+            --radius-full: 9999px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #0F0B1A;
+            color: var(--gray-800);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ═══ AMBIENT BACKGROUND ═══ */
+        .ambient-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .ambient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: orbFloat 20s ease-in-out infinite;
+        }
+        .ambient-orb:nth-child(1) {
+            width: 400px; height: 400px;
+            background: rgba(124,58,237,0.15);
+            top: -100px; left: -100px;
+            animation-delay: 0s;
+        }
+        .ambient-orb:nth-child(2) {
+            width: 350px; height: 350px;
+            background: rgba(245,158,11,0.1);
+            top: 30%; right: -150px;
+            animation-delay: -7s;
+        }
+        .ambient-orb:nth-child(3) {
+            width: 300px; height: 300px;
+            background: rgba(59,130,246,0.08);
+            bottom: -100px; left: 30%;
+            animation-delay: -14s;
+        }
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -40px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        /* ═══ APP SHELL ═══ */
+        .app-shell {
+            max-width: 440px;
+            margin: 0 auto;
+            background: linear-gradient(180deg, #FAFAFE 0%, #F3F0FF 30%, #F9FAFB 60%, #FAFAFE 100%);
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        @media (min-width: 768px) {
+            body { padding: 24px 0; }
+            .app-shell {
+                border-radius: 32px;
+                min-height: auto;
+                margin: 0 auto;
+                box-shadow: 0 0 0 1px rgba(124,58,237,0.08), 0 32px 80px rgba(0,0,0,0.3), 0 0 120px rgba(124,58,237,0.1);
+            }
+        }
+
+        /* ═══ HERO CAROUSEL ═══ */
+        .hero-carousel {
+            position: relative;
+            width: 100%;
+            height: 340px;
+            overflow: hidden;
+            touch-action: pan-y;
+        }
+        .hero-track {
+            display: flex;
+            height: 100%;
+            will-change: transform;
+            cursor: grab;
+        }
+        .hero-track.grabbing { cursor: grabbing; }
+        .hero-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            flex-shrink: 0;
+        }
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        .hero-gradient-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 60%;
+            background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.2) 40%, transparent 100%);
+            pointer-events: none;
+        }
+        .hero-gradient-top {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 100px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.35), transparent);
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        /* ── Hero floating glass buttons ── */
+        .hero-top-bar {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 14px 16px;
+            z-index: 15;
+        }
+        .glass-btn {
+            width: 42px; height: 42px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: var(--radius-md);
+            display: flex; align-items: center; justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.15), transparent);
+            border-radius: var(--radius-md) var(--radius-md) 0 0;
+            pointer-events: none;
+        }
+        .glass-btn:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-1px) scale(1.05);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+        .glass-btn:active { transform: scale(0.95); }
+        .glass-btn.liked { color: #FF3B5C; }
+        .glass-btn.liked i { animation: heartBeat 0.5s ease; }
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.4); }
+            50% { transform: scale(0.9); }
+            75% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+        .hero-right-btns { display: flex; gap: 8px; }
+
+        /* ── Hero bottom info (glass) ── */
+        .hero-bottom-info {
+            position: absolute;
+            bottom: 14px; left: 14px; right: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            z-index: 10;
+        }
+        .hero-dots-wrap {
+            display: flex; gap: 5px;
+        }
+        .hero-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hero-dot.active {
+            background: white;
+            width: 28px;
+            border-radius: var(--radius-full);
+            box-shadow: 0 2px 12px rgba(255,255,255,0.4);
+        }
+        .hero-photo-badge {
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            color: white;
+            padding: 6px 14px;
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 600;
+            display: flex; align-items: center; gap: 6px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* ── Hero nav arrows ── */
+        .hero-nav {
+            position: absolute;
+            top: 50%; transform: translateY(-50%);
+            width: 38px; height: 38px;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(8px);
+            border: none; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 15;
+            font-size: 13px; color: var(--gray-700);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+        }
+        .hero-carousel:hover .hero-nav { opacity: 1; }
+        .hero-nav:hover { background: white; transform: translateY(-50%) scale(1.12); box-shadow: 0 6px 24px rgba(0,0,0,0.2); }
+        .hero-nav:active { transform: translateY(-50%) scale(0.95); }
+        .hero-nav.prev { left: 12px; }
+        .hero-nav.next { right: 12px; }
+
+        /* ═══ CONTENT ═══ */
+        .content { padding: 0 16px 180px; }
+
+        /* ═══ PROPERTY HEADER ═══ */
+        .property-header { padding-top: 20px; margin-bottom: 16px; }
+        .property-badges {
+            display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap;
+        }
+        .badge {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 5px 12px; border-radius: var(--radius-full);
+            font-size: 11px; font-weight: 700;
+            backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+        }
+        .badge:hover { transform: translateY(-1px); }
+        .badge.verified {
+            background: rgba(16,185,129,0.1);
+            color: #047857;
+            border: 1px solid rgba(16,185,129,0.15);
+        }
+        .badge.type {
+            background: rgba(59,130,246,0.1);
+            color: #1D4ED8;
+            border: 1px solid rgba(59,130,246,0.15);
+        }
+        .badge.featured {
+            background: rgba(245,158,11,0.1);
+            color: #B45309;
+            border: 1px solid rgba(245,158,11,0.15);
+        }
+        .property-name {
+            font-size: 26px; font-weight: 900; color: var(--gray-900);
+            line-height: 1.15; letter-spacing: -0.6px; margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--gray-900) 0%, var(--gray-700) 100%);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        .property-location {
+            display: flex; align-items: center; gap: 6px;
+            color: var(--gray-500); font-size: 14px; font-weight: 500;
+        }
+        .property-location i { color: var(--primary); font-size: 13px; }
+        .property-location .distance {
+            color: var(--primary); font-weight: 700;
+            background: var(--primary-soft); padding: 2px 8px; border-radius: var(--radius-full);
+            font-size: 11px;
+        }
+
+        /* ═══ GLASS RATING ROW ═══ */
+        .rating-row {
+            display: flex; align-items: center; gap: 14px;
+            margin-top: 14px; padding: 14px 18px;
+            background: var(--glass);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-glass);
+            position: relative;
+            overflow: hidden;
+        }
+        .rating-row::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+            pointer-events: none;
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        }
+        .rating-badge {
+            display: flex; align-items: center; gap: 5px;
+            background: var(--accent); color: white;
+            padding: 6px 12px; border-radius: var(--radius-sm);
+            font-size: 15px; font-weight: 800;
+            box-shadow: 0 4px 12px rgba(245,158,11,0.3);
+            position: relative; z-index: 2;
+        }
+        .rating-badge i { font-size: 11px; }
+        .rating-text { font-size: 14px; color: var(--gray-600); position: relative; z-index: 2; }
+        .rating-text strong { color: var(--gray-800); font-weight: 700; }
+
+        /* ═══ LIQUID GLASS PRICE CARD ═══ */
+        .price-card {
+            background: var(--gradient-dark);
+            border-radius: var(--radius-2xl);
+            padding: 24px;
+            margin: 20px 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(76,29,149,0.3), 0 0 80px rgba(124,58,237,0.08);
+        }
+        /* Liquid glass internal reflections */
+        .price-card::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(245,158,11,0.12), transparent, rgba(167,139,250,0.15), transparent);
+            animation: liquidRotate 12s linear infinite;
+        }
+        @keyframes liquidRotate { to { transform: rotate(360deg); } }
+        .price-card::after {
+            content: '';
+            position: absolute; inset: 1px;
+            background: linear-gradient(135deg, rgba(30,27,75,0.95) 0%, rgba(76,29,149,0.92) 45%, rgba(124,58,237,0.9) 100%);
+            border-radius: calc(var(--radius-2xl) - 1px);
+        }
+        .price-card-inner {
+            position: relative; z-index: 2;
+        }
+        /* Floating glass orbs inside */
+        .price-orb {
+            position: absolute; border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.06);
+            z-index: 1;
+        }
+        .price-orb:nth-child(1) { width: 120px; height: 120px; top: -30px; right: -20px; }
+        .price-orb:nth-child(2) { width: 80px; height: 80px; bottom: -20px; left: -15px; }
+        .price-orb:nth-child(3) { width: 50px; height: 50px; top: 50%; right: 30%; }
+        .price-label {
+            font-size: 12px; font-weight: 600;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .price-amount {
+            font-size: 40px; font-weight: 900; letter-spacing: -1.5px;
+            margin: 6px 0;
+            text-shadow: 0 2px 20px rgba(255,255,255,0.1);
+        }
+        .price-amount .currency { font-size: 24px; font-weight: 600; opacity: 0.8; }
+        .price-amount .period { font-size: 16px; font-weight: 400; opacity: 0.5; }
+        .price-note {
+            font-size: 12px; color: rgba(255,255,255,0.55);
+            display: flex; align-items: center; gap: 6px;
+        }
+        .price-note i { color: #34D399; }
+        .price-types {
+            display: flex; gap: 8px; margin-top: 16px;
+        }
+        .price-type-pill {
+            flex: 1;
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-lg);
+            padding: 12px 8px; text-align: center;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .price-type-pill::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.06), transparent);
+            pointer-events: none;
+        }
+        .price-type-pill:hover, .price-type-pill.active {
+            background: rgba(255,255,255,0.14);
+            border-color: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        }
+        .price-type-pill.active {
+            box-shadow: 0 0 20px rgba(124,58,237,0.3), 0 8px 24px rgba(0,0,0,0.2);
+        }
+        .price-type-label {
+            font-size: 10px; font-weight: 600;
+            color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .price-type-amount {
+            font-size: 17px; font-weight: 800; margin-top: 3px;
+        }
+
+        /* ═══ HIGHLIGHTS STRIP ═══ */
+        .highlights-strip {
+            display: flex; gap: 8px; overflow-x: auto;
+            padding: 4px 0 20px; scrollbar-width: none;
+        }
+        .highlights-strip::-webkit-scrollbar { display: none; }
+        .highlight-chip {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 9px 16px;
+            background: var(--glass);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-full);
+            font-size: 12px; font-weight: 600;
+            color: var(--primary-dark);
+            white-space: nowrap;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-glass);
+            position: relative;
+            overflow: hidden;
+        }
+        .highlight-chip::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+            pointer-events: none;
+            border-radius: var(--radius-full);
+        }
+        .highlight-chip:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glass-lg);
+            background: rgba(255,255,255,0.8);
+        }
+        .highlight-chip i { font-size: 12px; color: var(--primary); }
+
+        /* ═══ SECTION ═══ */
+        .section { margin-bottom: 24px; }
+        .section-header {
+            display: flex; align-items: center;
+            justify-content: space-between; margin-bottom: 14px;
+        }
+        .section-title {
+            font-size: 18px; font-weight: 800; color: var(--gray-900);
+            display: flex; align-items: center; gap: 8px;
+            letter-spacing: -0.3px;
+        }
+        .section-title i {
+            font-size: 16px;
+            background: var(--gradient); -webkit-background-clip: text;
+            background-clip: text; color: transparent;
+        }
+        .section-divider {
+            height: 1px; margin: 0 -16px 22px;
+            background: linear-gradient(90deg, transparent, var(--gray-200), transparent);
+        }
+        .view-all {
+            font-size: 13px; font-weight: 600; color: var(--primary);
+            cursor: pointer; display: flex; align-items: center; gap: 4px;
+            transition: all 0.3s ease; text-decoration: none;
+        }
+        .view-all:hover { gap: 8px; color: var(--primary-dark); }
+
+        /* ═══ ABOUT ═══ */
+        .about-text {
+            font-size: 14px; line-height: 1.8; color: var(--gray-600);
+        }
+        .about-text.collapsed {
+            display: -webkit-box; -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical; overflow: hidden;
+        }
+        .read-more-btn {
+            background: none; border: none; color: var(--primary);
+            font-size: 13px; font-weight: 700; cursor: pointer;
+            margin-top: 8px; padding: 0; display: flex; align-items: center; gap: 4px;
+            transition: all 0.25s ease;
+        }
+        .read-more-btn:hover { gap: 8px; }
+
+        /* ═══ LIQUID GLASS ROOM CARDS ═══ */
+        .room-select-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1.5px solid var(--glass-border);
+            border-radius: var(--radius-2xl);
+            padding: 18px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-glass);
+        }
+        /* Internal glass highlight */
+        .room-select-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.45), transparent);
+            pointer-events: none;
+            border-radius: var(--radius-2xl);
+            transition: opacity 0.4s ease;
+        }
+        .room-select-card:hover {
+            border-color: var(--primary-light);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glass-lg), 0 0 40px rgba(124,58,237,0.06);
+        }
+        .room-select-card.selected {
+            border-color: var(--primary);
+            background: rgba(237,233,254,0.7);
+            box-shadow: 0 8px 32px rgba(124,58,237,0.15), inset 0 1px 0 rgba(255,255,255,0.6), 0 0 40px rgba(124,58,237,0.08);
+        }
+        .room-select-card.selected::after {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: var(--gradient);
+        }
+        .room-select-top {
+            display: flex; align-items: center; justify-content: space-between;
+            position: relative; z-index: 2;
+        }
+        .room-select-info { display: flex; align-items: center; gap: 12px; }
+        .room-select-icon {
+            width: 48px; height: 48px;
+            border-radius: var(--radius-lg);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 19px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .room-select-icon::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+            pointer-events: none;
+        }
+        .room-select-card:nth-child(1) .room-select-icon { background: linear-gradient(135deg, #EDE9FE, #DDD6FE); color: var(--primary); }
+        .room-select-card:nth-child(2) .room-select-icon { background: linear-gradient(135deg, #DBEAFE, #BFDBFE); color: var(--info); }
+        .room-select-card:nth-child(3) .room-select-icon { background: linear-gradient(135deg, #FEF3C7, #FDE68A); color: var(--accent-dark); }
+        .room-select-card.selected .room-select-icon { background: var(--gradient); color: white; box-shadow: var(--shadow-purple); }
+        .room-select-name { font-size: 15px; font-weight: 700; color: var(--gray-800); }
+        .room-select-sub { font-size: 12px; color: var(--gray-500); margin-top: 2px; }
+        .room-select-price { text-align: right; position: relative; z-index: 2; }
+        .room-select-amount { font-size: 22px; font-weight: 900; color: var(--primary); letter-spacing: -0.5px; }
+        .room-select-period { font-size: 11px; color: var(--gray-500); font-weight: 500; }
+        .room-select-bottom {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-top: 14px; padding-top: 14px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            position: relative; z-index: 2;
+        }
+        .room-availability {
+            display: flex; align-items: center; gap: 6px;
+            font-size: 12px; font-weight: 700;
+        }
+        .room-availability .dot { width: 8px; height: 8px; border-radius: 50%; }
+        .room-availability.available .dot { background: var(--success); box-shadow: 0 0 8px rgba(16,185,129,0.4); }
+        .room-availability.available { color: #047857; }
+        .room-availability.limited .dot { background: var(--accent); box-shadow: 0 0 8px rgba(245,158,11,0.4); animation: pulse-dot 2s infinite; }
+        .room-availability.limited { color: #B45309; }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.4); }
+        }
+        .room-check {
+            width: 24px; height: 24px; border-radius: 50%;
+            border: 2px solid var(--gray-300);
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 11px;
+        }
+        .room-select-card.selected .room-check {
+            background: var(--gradient); border-color: var(--primary);
+            color: white; box-shadow: 0 4px 12px rgba(124,58,237,0.3);
+            transform: scale(1.1);
+        }
+
+        /* ═══ GLASS AMENITY CARDS ═══ */
+        .amenity-category { margin-bottom: 18px; }
+        .amenity-category-title {
+            font-size: 12px; font-weight: 700; color: var(--gray-500);
+            text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px;
+        }
+        .amenity-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+        .amenity-item {
+            display: flex; flex-direction: column; align-items: center; gap: 7px;
+            padding: 14px 4px;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-glass);
+            position: relative; overflow: hidden;
+        }
+        .amenity-item::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+            pointer-events: none;
+        }
+        .amenity-item:hover {
+            background: rgba(237,233,254,0.8);
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: var(--shadow-glass-lg);
+        }
+        .amenity-icon {
+            width: 40px; height: 40px;
+            background: rgba(255,255,255,0.8);
+            border-radius: var(--radius-md);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 17px; color: var(--primary);
+            transition: all 0.35s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            position: relative; z-index: 2;
+        }
+        .amenity-item:hover .amenity-icon {
+            background: var(--gradient); color: white;
+            box-shadow: var(--shadow-purple);
+            transform: scale(1.1);
+        }
+        .amenity-name {
+            font-size: 10px; font-weight: 600; color: var(--gray-600);
+            text-align: center; line-height: 1.3; position: relative; z-index: 2;
+        }
+
+        /* ═══ GALLERY ═══ */
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 6px; border-radius: var(--radius-xl); overflow: hidden;
+        }
+        .gallery-item {
+            aspect-ratio: 1; overflow: hidden; cursor: pointer;
+            position: relative; border-radius: 4px;
+        }
+        .gallery-item img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .gallery-item:hover img { transform: scale(1.12); }
+        .gallery-item.more-overlay::after {
+            content: '+4 More';
+            position: absolute; inset: 0;
+            background: rgba(30,27,75,0.65);
+            backdrop-filter: blur(3px);
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: 800; font-size: 15px;
+            letter-spacing: -0.3px;
+        }
+
+        /* ═══ GLASS MAP ═══ */
+        .map-card {
+            width: 100%; height: 170px;
+            background: linear-gradient(135deg, rgba(224,231,255,0.8), rgba(199,210,254,0.8));
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: var(--radius-2xl);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 8px; overflow: hidden; position: relative;
+            margin-bottom: 14px; cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-glass);
+        }
+        .map-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+            pointer-events: none;
+        }
+        .map-card:hover { transform: scale(1.01); box-shadow: var(--shadow-glass-lg); }
+        .map-card i { font-size: 30px; color: var(--primary); position: relative; z-index: 2; }
+        .map-card span { font-size: 14px; font-weight: 700; color: var(--primary-dark); position: relative; z-index: 2; }
+
+        /* ═══ NEARBY ═══ */
+        .nearby-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+        .nearby-item {
+            display: flex; align-items: center; gap: 10px;
+            padding: 13px;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-glass);
+            position: relative; overflow: hidden;
+        }
+        .nearby-item::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+            pointer-events: none;
+        }
+        .nearby-item:hover { transform: translateY(-2px); box-shadow: var(--shadow-glass-lg); }
+        .nearby-icon {
+            width: 38px; height: 38px; border-radius: var(--radius-sm);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 15px; flex-shrink: 0; position: relative; z-index: 2;
+        }
+        .nearby-item:nth-child(1) .nearby-icon { background: linear-gradient(135deg, #DBEAFE, #BFDBFE); color: var(--info); }
+        .nearby-item:nth-child(2) .nearby-icon { background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: var(--success); }
+        .nearby-item:nth-child(3) .nearby-icon { background: linear-gradient(135deg, #FEF3C7, #FDE68A); color: var(--accent-dark); }
+        .nearby-item:nth-child(4) .nearby-icon { background: linear-gradient(135deg, #FEE2E2, #FECACA); color: var(--danger); }
+        .nearby-item:nth-child(5) .nearby-icon { background: linear-gradient(135deg, #EDE9FE, #DDD6FE); color: var(--primary); }
+        .nearby-item:nth-child(6) .nearby-icon { background: linear-gradient(135deg, #E0E7FF, #C7D2FE); color: #4338CA; }
+        .nearby-name { font-size: 13px; font-weight: 700; color: var(--gray-700); position: relative; z-index: 2; }
+        .nearby-dist { font-size: 11px; color: var(--gray-500); font-weight: 500; position: relative; z-index: 2; }
+
+        /* ═══ HOUSE RULES ═══ */
+        .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .rule-chip {
+            display: flex; align-items: center; gap: 8px;
+            padding: 12px 14px;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            font-size: 12px; font-weight: 600; color: var(--gray-700);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-glass);
+            position: relative; overflow: hidden;
+        }
+        .rule-chip::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+            pointer-events: none;
+        }
+        .rule-chip:hover { transform: translateY(-1px); background: rgba(237,233,254,0.7); }
+        .rule-chip i { font-size: 13px; color: var(--primary); flex-shrink: 0; position: relative; z-index: 2; }
+
+        /* ═══ GLASS REVIEWS ═══ */
+        .review-summary {
+            display: flex; align-items: center; gap: 20px;
+            padding: 20px;
+            background: var(--glass);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-2xl);
+            margin-bottom: 16px;
+            box-shadow: var(--shadow-glass-lg);
+            position: relative; overflow: hidden;
+        }
+        .review-summary::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+            pointer-events: none;
+        }
+        .review-score { text-align: center; flex-shrink: 0; position: relative; z-index: 2; }
+        .review-score .number { font-size: 44px; font-weight: 900; color: var(--gray-900); line-height: 1; letter-spacing: -1px; }
+        .review-score .stars { display: flex; gap: 2px; margin-top: 6px; justify-content: center; }
+        .review-score .stars i { color: var(--accent); font-size: 13px; }
+        .review-score .count { font-size: 12px; color: var(--gray-500); margin-top: 4px; font-weight: 500; }
+        .review-bars { flex: 1; position: relative; z-index: 2; }
+        .review-bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+        .review-bar-label { font-size: 12px; font-weight: 700; color: var(--gray-500); width: 14px; }
+        .review-bar-track { flex: 1; height: 7px; background: rgba(0,0,0,0.06); border-radius: var(--radius-full); overflow: hidden; }
+        .review-bar-fill { height: 100%; border-radius: var(--radius-full); background: var(--accent); transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1); }
+
+        .review-card {
+            padding: 16px;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-glass);
+            position: relative; overflow: hidden;
+        }
+        .review-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+            pointer-events: none;
+        }
+        .review-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-glass-lg); }
+        .review-card-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; position: relative; z-index: 2; }
+        .review-avatar {
+            width: 40px; height: 40px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 14px; color: white; flex-shrink: 0;
+        }
+        .review-avatar.purple { background: var(--gradient); }
+        .review-avatar.blue { background: linear-gradient(135deg, #3B82F6, #2563EB); }
+        .review-avatar.green { background: linear-gradient(135deg, #10B981, #059669); }
+        .review-user-info { flex: 1; }
+        .review-user-name { font-size: 14px; font-weight: 700; color: var(--gray-800); }
+        .review-user-date { font-size: 11px; color: var(--gray-400); font-weight: 500; }
+        .review-stars { display: flex; gap: 2px; }
+        .review-stars i { color: var(--accent); font-size: 11px; }
+        .review-text { font-size: 13px; color: var(--gray-600); line-height: 1.7; position: relative; z-index: 2; }
+
+        /* ═══ SIMILAR PGs ═══ */
+        .similar-scroll {
+            display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px;
+            scrollbar-width: none;
+        }
+        .similar-scroll::-webkit-scrollbar { display: none; }
+        .similar-card {
+            min-width: 230px; border-radius: var(--radius-2xl); overflow: hidden;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+            box-shadow: var(--shadow-glass);
+        }
+        .similar-card:hover { box-shadow: var(--shadow-glass-lg); transform: translateY(-4px); }
+        .similar-img { width: 100%; height: 140px; object-fit: cover; }
+        .similar-info { padding: 14px; }
+        .similar-name { font-size: 15px; font-weight: 700; color: var(--gray-800); margin-bottom: 3px; }
+        .similar-loc { font-size: 12px; color: var(--gray-500); display: flex; align-items: center; gap: 4px; font-weight: 500; }
+        .similar-loc i { font-size: 10px; color: var(--primary); }
+        .similar-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
+        .similar-price { font-size: 17px; font-weight: 900; color: var(--primary); letter-spacing: -0.3px; }
+        .similar-price span { font-size: 11px; font-weight: 400; color: var(--gray-500); }
+        .similar-rating { display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; color: var(--gray-700); }
+        .similar-rating i { color: var(--accent); font-size: 10px; }
+
+        /* ═══ ULTRA GLASS STICKY CTA ═══ */
+        .sticky-cta {
+            position: fixed; bottom: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 100%; max-width: 440px;
+            background: rgba(255,255,255,0.72);
+            backdrop-filter: blur(30px) saturate(200%);
+            -webkit-backdrop-filter: blur(30px) saturate(200%);
+            border-top: 1px solid rgba(255,255,255,0.5);
+            padding: 14px 16px 16px;
+            z-index: 100;
+            box-shadow: 0 -8px 40px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.7);
+        }
+        .cta-price-row {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .cta-price { font-size: 22px; font-weight: 900; color: var(--gray-900); letter-spacing: -0.5px; }
+        .cta-price span { font-size: 13px; color: var(--gray-500); font-weight: 400; }
+        .cta-rating { display: flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 700; color: var(--gray-700); }
+        .cta-rating i { color: var(--accent); }
+        .cta-buttons { display: flex; gap: 10px; }
+        .cta-btn {
+            flex: 1; padding: 15px; border-radius: var(--radius-lg);
+            font-size: 14px; font-weight: 700; cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            border: none; position: relative; overflow: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+        .cta-btn::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.2), transparent);
+            pointer-events: none;
+        }
+        .cta-btn.whatsapp {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            box-shadow: 0 6px 20px rgba(37,211,102,0.3);
+        }
+        .cta-btn.whatsapp:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(37,211,102,0.4); }
+        .cta-btn.whatsapp:active { transform: scale(0.97); }
+        .cta-btn.book {
+            background: var(--gradient);
+            color: white;
+            box-shadow: var(--shadow-purple);
+        }
+        .cta-btn.book:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(124,58,237,0.4); }
+        .cta-btn.book:active { transform: scale(0.97); }
+
+        /* ═══ SCROLLBAR ═══ */
+        ::-webkit-scrollbar { width: 3px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius: var(--radius-full); }
+
+        /* ═══ SCROLL ANIMATIONS ═══ */
+        .anim-fade {
+            opacity: 0; transform: translateY(24px);
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .anim-fade.visible { opacity: 1; transform: translateY(0); }
+
+        /* ═══ TOAST ═══ */
+        .toast {
+            position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(20px);
+            background: var(--gray-900); color: white;
+            padding: 12px 24px; border-radius: var(--radius-full);
+            font-size: 13px; font-weight: 600; z-index: 200;
+            display: flex; align-items: center; gap: 8px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+            opacity: 0; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+        .toast i { color: var(--success); }
+    </style>
+</head>
+<body>
+    <!-- ═══ AMBIENT BACKGROUND ═══ -->
+    <div class="ambient-bg">
+        <div class="ambient-orb"></div>
+        <div class="ambient-orb"></div>
+        <div class="ambient-orb"></div>
+    </div>
+
+    <div class="app-shell">
+        <!-- ═══ HERO CAROUSEL ═══ -->
+        <div class="hero-carousel" id="hero-carousel">
+            <div class="hero-gradient-top"></div>
+            <div class="hero-track" id="hero-track">
+                <div class="hero-slide"><img src="images/pg_exterior.jpg" alt="Building Exterior" draggable="false"><div class="hero-gradient-overlay"></div></div>
+                <div class="hero-slide"><img src="images/pg_room_hero.jpg" alt="PG Room" draggable="false"><div class="hero-gradient-overlay"></div></div>
+                <div class="hero-slide"><img src="images/pg_common_area.jpg" alt="Common Area" draggable="false"><div class="hero-gradient-overlay"></div></div>
+                <div class="hero-slide"><img src="images/pg_kitchen.jpg" alt="Kitchen" draggable="false"><div class="hero-gradient-overlay"></div></div>
+            </div>
+            <div class="hero-top-bar">
+                <button class="glass-btn" id="back-btn" aria-label="Go back"><i class="fas fa-arrow-left"></i></button>
+                <div class="hero-right-btns">
+                    <button class="glass-btn" id="share-btn" aria-label="Share"><i class="fas fa-share-nodes"></i></button>
+                    <button class="glass-btn" id="fav-btn" aria-label="Favorite"><i class="far fa-heart"></i></button>
+                </div>
+            </div>
+            <button class="hero-nav prev" id="hero-prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+            <button class="hero-nav next" id="hero-next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+            <div class="hero-bottom-info">
+                <div class="hero-dots-wrap" id="hero-dots">
+                    <button class="hero-dot active" data-index="0"></button>
+                    <button class="hero-dot" data-index="1"></button>
+                    <button class="hero-dot" data-index="2"></button>
+                    <button class="hero-dot" data-index="3"></button>
+                </div>
+                <div class="hero-photo-badge"><i class="fas fa-camera"></i> 1 / 4</div>
+            </div>
+        </div>
+
+        <!-- ═══ CONTENT ═══ -->
+        <div class="content">
+            <div class="property-header anim-fade">
+                <div class="property-badges">
+                    <span class="badge verified"><i class="fas fa-circle-check"></i> Verified</span>
+                    <span class="badge type"><i class="fas fa-mars"></i> Boys PG</span>
+                    <span class="badge featured"><i class="fas fa-bolt"></i> Featured</span>
+                </div>
+                <h1 class="property-name">Sunrise Boys PG</h1>
+                <div class="property-location">
+                    <i class="fas fa-location-dot"></i>
+                    Koramangala, 5th Block, Bangalore
+                    <span class="distance">1.2 km Metro</span>
+                </div>
+            </div>
+
+            <div class="rating-row anim-fade">
+                <div class="rating-badge"><i class="fas fa-star"></i> 4.5</div>
+                <div class="rating-text"><strong>Very Good</strong> · 42 reviews</div>
+            </div>
+
+            <div class="price-card anim-fade">
+                <div class="price-orb"></div>
+                <div class="price-orb"></div>
+                <div class="price-orb"></div>
+                <div class="price-card-inner">
+                    <div class="price-label">Starting from</div>
+                    <div class="price-amount"><span class="currency">₹</span>4,000<span class="period">/month</span></div>
+                    <div class="price-note"><i class="fas fa-circle-check"></i> Food, WiFi & electricity included</div>
+                    <div class="price-types">
+                        <div class="price-type-pill" data-price="8000"><div class="price-type-label">Single</div><div class="price-type-amount">₹8,000</div></div>
+                        <div class="price-type-pill active" data-price="5500"><div class="price-type-label">Double</div><div class="price-type-amount">₹5,500</div></div>
+                        <div class="price-type-pill" data-price="4000"><div class="price-type-label">Triple</div><div class="price-type-amount">₹4,000</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlights-strip anim-fade">
+                <div class="highlight-chip"><i class="fas fa-utensils"></i> Meals Included</div>
+                <div class="highlight-chip"><i class="fas fa-snowflake"></i> AC Rooms</div>
+                <div class="highlight-chip"><i class="fas fa-train-subway"></i> Near Metro</div>
+                <div class="highlight-chip"><i class="fas fa-wifi"></i> High-Speed WiFi</div>
+                <div class="highlight-chip"><i class="fas fa-shield-halved"></i> 24/7 Security</div>
+                <div class="highlight-chip"><i class="fas fa-bolt"></i> Power Backup</div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="section anim-fade">
+                <div class="section-header"><div class="section-title"><i class="fas fa-circle-info"></i> About this PG</div></div>
+                <p class="about-text collapsed" id="about-text">Sunrise Boys PG is a premium paying guest accommodation located in the heart of Koramangala, Bangalore. We offer fully furnished rooms with modern amenities including high-speed WiFi, air conditioning, daily meals, and 24/7 security. Our PG is ideal for working professionals and students, situated just 1.2 km from the nearest metro station and within walking distance of popular restaurants, cafes, and shopping areas. We maintain a clean, hygienic environment with regular housekeeping and provide a comfortable community space for our residents.</p>
+                <button class="read-more-btn" id="read-more-btn">Read More <i class="fas fa-chevron-down"></i></button>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="section anim-fade">
+                <div class="section-header"><div class="section-title"><i class="fas fa-bed"></i> Choose Room Type</div></div>
+                <div class="room-select-card selected" data-room="single">
+                    <div class="room-select-top">
+                        <div class="room-select-info"><div class="room-select-icon"><i class="fas fa-user"></i></div><div><div class="room-select-name">Single Room</div><div class="room-select-sub">Private · Attached Bath · AC</div></div></div>
+                        <div class="room-select-price"><div class="room-select-amount">₹8,000</div><div class="room-select-period">/month</div></div>
+                    </div>
+                    <div class="room-select-bottom"><div class="room-availability available"><div class="dot"></div>1 Room Available</div><div class="room-check"><i class="fas fa-check"></i></div></div>
+                </div>
+                <div class="room-select-card" data-room="double">
+                    <div class="room-select-top">
+                        <div class="room-select-info"><div class="room-select-icon"><i class="fas fa-user-group"></i></div><div><div class="room-select-name">Double Sharing</div><div class="room-select-sub">Shared · Common Bath · AC</div></div></div>
+                        <div class="room-select-price"><div class="room-select-amount">₹5,500</div><div class="room-select-period">/month</div></div>
+                    </div>
+                    <div class="room-select-bottom"><div class="room-availability available"><div class="dot"></div>2 Beds Available</div><div class="room-check"></div></div>
+                </div>
+                <div class="room-select-card" data-room="triple">
+                    <div class="room-select-top">
+                        <div class="room-select-info"><div class="room-select-icon"><i class="fas fa-users"></i></div><div><div class="room-select-name">Triple Sharing</div><div class="room-select-sub">Shared · Common Bath · Fan</div></div></div>
+                        <div class="room-select-price"><div class="room-select-amount">₹4,000</div><div class="room-select-period">/month</div></div>
+                    </div>
+                    <div class="room-select-bottom"><div class="room-availability limited"><div class="dot"></div>Only 2 Beds Left</div><div class="room-check"></div></div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="section anim-fade">
+                <div class="section-header"><div class="section-title"><i class="fas fa-sparkles"></i> Amenities</div></div>
+                <div class="amenity-category"><div class="amenity-category-title">Room Facilities</div><div class="amenity-grid">
+                    <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-bed"></i></div><span class="amenity-name">Bed & Mattress</span></div>
+                    <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-snowflake"></i></div><span class="amenity-name">AC</span></div>
+                    <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-table-columns"></i></div><span class="amenity-name">Study Desk</span></div>
+                    <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-box-archive"></i></div><span class="amenity-name">Wardrobe</span></div>
+                </div></div>
+                <div class="amenity-category"><div class="amenity-category-title">Common Amenities</div><div class="amenity-grid">
+                    <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-wifi"></i></div><span class="amenity-name">WiFi</span></div>
+                    <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-utensils"></i></div><span class="amenity-name">Meals</span></div>
+                    <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-shirt"></i></div><span class="amenity-name">Laundry</span></div>
+                    <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-tv"></i></div><span class="amenity-name">TV Room</span></div>
+                </div></div>
+                <div class="amenity-category"><div class="amenity-category-title">Safety & Services</div><div class="amenity-grid">
+                    <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-shield-halved"></i></div><span class="amenity-name">Security</span></div>
+                    <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-bolt"></i></div><span class="amenity-name">Backup</span></div>
+                    <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-broom"></i></div><span class="amenity-name">Cleaning</span></div>
+                    <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-car"></i></div><span class="amenity-name">Parking</span></div>
+                </div></div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="section anim-fade">
+                <div class="section-header"><div class="section-title"><i class="fas fa-images"></i> Photos</div><a class="view-all" href="#">View All <i class="fas fa-chevron-right" style="font-size:10px;"></i></a></div>
+                <div class="gallery-grid">
+                    <div class="gallery-item"><img src="images/pg_room_hero.jpg" alt="Room"></div>
+                    <div class="gallery-item"><img src="images/pg_common_area.jpg" alt="Common Area"></div>
+                    <div class="gallery-item"><img src="images/pg_kitchen.jpg" alt="Kitchen"></div>
+                    <div class="gallery-item"><img src="images/pg_exterior.jpg" alt="Exterior"></div>
+                    <div class="gallery-item"><img src="images/pg_room_hero.jpg" alt="Room 2"></div>
+                    <div class="gallery-item more-overlay"><img src="images/pg_common_area.jpg" alt="More"></div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="section anim-fade">
+                <div class="section-header"><div class="section-title"><i class="fas fa-map-location-dot"></i> Location & Nearby</div></div>
+                <div class="map-card" id="map-card"><i class="fas fa-map-location-dot"></i><span>View on Google Maps</span></div>
+                <div class="nearby-grid">
+                    <div class="nearby-item"><div class="nearby-icon"><i class="fas fa-train-subway"></i></div><div><div class="nearby-name">Metro Station</div><div class="nearby-dist">1.2 km</div></div></div>
+                    <div class="nearby-item"><div class="nearby-icon"><i class="fas fa-cart-shopping"></i></div><div><div class="nearby-name">Market</div><div class="nearby-dist">0.5 km</div></div></div>
+                    <div class="nearby-item"><div class="nearby-icon"><i class="fas fa-graduation-cap"></i></div><div><div class="nearby-name">College</div><div class="nearby-dist">2.0 km</div></div></div>
+                    <div class="nearby-item"><div class="nearby-icon"><i class="fas fa-hospital"></i></div><div><div class="nearby-name">Hospital</div><div class="nearby-dist">1.8 km</div></div></div>
+                    <div class="nearby-item"><div class="nearby-icon"><i class="fas fa-bus"></i></div><div><div class="nearby-name">Bus Stop</div><div class="nearby-dist">0.3 km</div></div></div>
+                    <div class="nearby-item"><div class="nearby-icon"><i class="fas fa-building"></i></div><div><div class="nearby-name">IT Park</div><div class="nearby-dist">3.0 km</div></div></div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="section anim-fade">
+                <div class="section-header"><div class="section-title"><i class="fas fa-clipboard-list"></i> House Rules</div></div>
+                <div class="rules-grid">
+                    <div class="rule-chip"><i class="fas fa-clock"></i> Gate: 10:30 PM</div>
+                    <div class="rule-chip"><i class="fas fa-ban-smoking"></i> No Smoking</div>
+                    <div class="rule-chip"><i class="fas fa-user-xmark"></i> No Visitors 8PM+</div>
+                    <div class="rule-chip"><i class="fas fa-volume-xmark"></i> Quiet: 10PM–7AM</div>
+                    <div class="rule-chip"><i class="fas fa-id-card"></i> ID Required</div>
+                    <div class="rule-chip"><i class="fas fa-paw"></i> No Pets</div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="section anim-fade">
+                <div class="section-header"><div class="section-title"><i class="fas fa-star-half-stroke"></i> Reviews</div><a class="view-all" href="#">All 42 <i class="fas fa-chevron-right" style="font-size:10px;"></i></a></div>
+                <div class="review-summary">
+                    <div class="review-score"><div class="number">4.5</div><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-stroke"></i></div><div class="count">42 reviews</div></div>
+                    <div class="review-bars">
+                        <div class="review-bar-row"><span class="review-bar-label">5</span><div class="review-bar-track"><div class="review-bar-fill" data-width="60"></div></div></div>
+                        <div class="review-bar-row"><span class="review-bar-label">4</span><div class="review-bar-track"><div class="review-bar-fill" data-width="25"></div></div></div>
+                        <div class="review-bar-row"><span class="review-bar-label">3</span><div class="review-bar-track"><div class="review-bar-fill" data-width="10"></div></div></div>
+                        <div class="review-bar-row"><span class="review-bar-label">2</span><div class="review-bar-track"><div class="review-bar-fill" data-width="3"></div></div></div>
+                        <div class="review-bar-row"><span class="review-bar-label">1</span><div class="review-bar-track"><div class="review-bar-fill" data-width="2"></div></div></div>
+                    </div>
+                </div>
+                <div class="review-card"><div class="review-card-top"><div class="review-avatar purple">AK</div><div class="review-user-info"><div class="review-user-name">Arjun Kumar</div><div class="review-user-date">2 weeks ago</div></div><div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div><p class="review-text">Great PG! Clean rooms, delicious food, and the WiFi is really fast. The owner is very cooperative and helpful. Highly recommended for working professionals.</p></div>
+                <div class="review-card"><div class="review-card-top"><div class="review-avatar blue">SM</div><div class="review-user-info"><div class="review-user-name">Saurabh Mishra</div><div class="review-user-date">1 month ago</div></div><div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div></div><p class="review-text">Good location near metro and market. Rooms are spacious. Only downside is the curfew timing could be a bit more flexible for night-shift workers.</p></div>
+                <div class="review-card"><div class="review-card-top"><div class="review-avatar green">RP</div><div class="review-user-info"><div class="review-user-name">Ravi Patel</div><div class="review-user-date">2 months ago</div></div><div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-stroke"></i></div></div><p class="review-text">Living here for 6 months. The food quality is consistent and the staff is friendly. Great value for money especially the triple sharing option.</p></div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="section anim-fade">
+                <div class="section-header"><div class="section-title"><i class="fas fa-building"></i> Similar PGs Nearby</div></div>
+                <div class="similar-scroll">
+                    <div class="similar-card"><img class="similar-img" src="images/pg_exterior.jpg" alt="Green Valley PG"><div class="similar-info"><div class="similar-name">Green Valley PG</div><div class="similar-loc"><i class="fas fa-location-dot"></i> HSR Layout</div><div class="similar-bottom"><div class="similar-price">₹4,500<span>/mo</span></div><div class="similar-rating"><i class="fas fa-star"></i> 4.3</div></div></div></div>
+                    <div class="similar-card"><img class="similar-img" src="images/pg_common_area.jpg" alt="Urban Nest PG"><div class="similar-info"><div class="similar-name">Urban Nest PG</div><div class="similar-loc"><i class="fas fa-location-dot"></i> Indiranagar</div><div class="similar-bottom"><div class="similar-price">₹5,000<span>/mo</span></div><div class="similar-rating"><i class="fas fa-star"></i> 4.6</div></div></div></div>
+                    <div class="similar-card"><img class="similar-img" src="images/pg_kitchen.jpg" alt="Comfort Stay PG"><div class="similar-info"><div class="similar-name">Comfort Stay PG</div><div class="similar-loc"><i class="fas fa-location-dot"></i> BTM Layout</div><div class="similar-bottom"><div class="similar-price">₹3,800<span>/mo</span></div><div class="similar-rating"><i class="fas fa-star"></i> 4.1</div></div></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══ STICKY CTA ═══ -->
+        <div class="sticky-cta">
+            <div class="cta-price-row">
+                <div class="cta-price">₹4,000 <span>/month onwards</span></div>
+                <div class="cta-rating"><i class="fas fa-star"></i> 4.5</div>
+            </div>
+            <div class="cta-buttons">
+                <button class="cta-btn whatsapp" id="whatsapp-btn"><i class="fab fa-whatsapp" style="font-size:18px;"></i> Chat</button>
+                <button class="cta-btn book" id="book-btn"><i class="fas fa-calendar-check"></i> Book a Visit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"><i class="fas fa-circle-check"></i><span></span></div>
+
+    <script>
+    (function() {
+        'use strict';
+
+        // ═══ TOAST ═══
+        const toast = document.getElementById('toast');
+        function showToast(msg) {
+            toast.querySelector('span').textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
+        // ═══ BACK BUTTON — Actually works ═══
+        document.getElementById('back-btn').addEventListener('click', () => {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                // If no history, navigate to vendor page as fallback
+                window.location.href = 'vendor-view-pg.html';
+            }
+        });
+
+        // ═══ SHARE BUTTON — Uses native share or clipboard ═══
+        document.getElementById('share-btn').addEventListener('click', async () => {
+            const shareData = {
+                title: 'Sunrise Boys PG — HostelPGDekho',
+                text: 'Check out Sunrise Boys PG in Koramangala, Bangalore! Starting ₹4,000/mo. Verified listing on HostelPGDekho.',
+                url: window.location.href
+            };
+            try {
+                if (navigator.share) {
+                    await navigator.share(shareData);
+                } else {
+                    await navigator.clipboard.writeText(shareData.url);
+                    showToast('Link copied to clipboard!');
+                }
+            } catch(e) {
+                try {
+                    await navigator.clipboard.writeText(window.location.href);
+                    showToast('Link copied to clipboard!');
+                } catch(e2) { showToast('Could not share'); }
+            }
+        });
+
+        // ═══ FAVORITE BUTTON ═══
+        const favBtn = document.getElementById('fav-btn');
+        favBtn.addEventListener('click', () => {
+            const isLiked = favBtn.classList.toggle('liked');
+            const icon = favBtn.querySelector('i');
+            icon.className = isLiked ? 'fas fa-heart' : 'far fa-heart';
+            showToast(isLiked ? 'Added to favorites ❤️' : 'Removed from favorites');
+        });
+
+        // ═══ CAROUSEL — Full touch/drag + click + auto-slide ═══
+        const track = document.getElementById('hero-track');
+        const dots = document.querySelectorAll('.hero-dot');
+        const photoBadge = document.querySelector('.hero-photo-badge');
+        const totalSlides = document.querySelectorAll('.hero-slide').length;
+        let currentSlide = 0;
+        let isDragging = false;
+        let startX = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+        let animId = 0;
+
+        function getSlideWidth() { return track.parentElement.clientWidth; }
+
+        function setSlidePosition() {
+            track.style.transform = `translateX(${currentTranslate}px)`;
+        }
+
+        function goToSlide(index, animate = true) {
+            currentSlide = ((index % totalSlides) + totalSlides) % totalSlides;
+            if (animate) {
+                track.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            } else {
+                track.style.transition = 'none';
+            }
+            currentTranslate = -currentSlide * getSlideWidth();
+            prevTranslate = currentTranslate;
+            setSlidePosition();
+            dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+            photoBadge.innerHTML = `<i class="fas fa-camera"></i> ${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        // Arrow buttons
+        document.getElementById('hero-prev').addEventListener('click', () => { goToSlide(currentSlide - 1); resetAutoSlide(); });
+        document.getElementById('hero-next').addEventListener('click', () => { goToSlide(currentSlide + 1); resetAutoSlide(); });
+        dots.forEach(dot => dot.addEventListener('click', () => { goToSlide(+dot.dataset.index); resetAutoSlide(); }));
+
+        // Touch events
+        track.addEventListener('touchstart', touchStart, { passive: true });
+        track.addEventListener('touchmove', touchMove, { passive: false });
+        track.addEventListener('touchend', touchEnd);
+
+        // Mouse events
+        track.addEventListener('mousedown', touchStart);
+        track.addEventListener('mousemove', touchMove);
+        track.addEventListener('mouseup', touchEnd);
+        track.addEventListener('mouseleave', () => { if (isDragging) touchEnd(); });
+
+        function touchStart(e) {
+            isDragging = true;
+            startX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+            track.style.transition = 'none';
+            track.classList.add('grabbing');
+            cancelAnimationFrame(animId);
+        }
+
+        function touchMove(e) {
+            if (!isDragging) return;
+            const currentX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+            const diff = currentX - startX;
+            currentTranslate = prevTranslate + diff;
+            setSlidePosition();
+            if (e.cancelable) e.preventDefault();
+        }
+
+        function touchEnd() {
+            isDragging = false;
+            track.classList.remove('grabbing');
+            const movedBy = currentTranslate - prevTranslate;
+            if (movedBy < -50 && currentSlide < totalSlides - 1) {
+                goToSlide(currentSlide + 1);
+            } else if (movedBy > 50 && currentSlide > 0) {
+                goToSlide(currentSlide - 1);
+            } else {
+                goToSlide(currentSlide);
+            }
+            resetAutoSlide();
+        }
+
+        // Auto-slide
+        let autoSlideTimer;
+        function startAutoSlide() {
+            autoSlideTimer = setInterval(() => goToSlide(currentSlide + 1), 4500);
+        }
+        function resetAutoSlide() {
+            clearInterval(autoSlideTimer);
+            startAutoSlide();
+        }
+        startAutoSlide();
+
+        // Resize fix
+        window.addEventListener('resize', () => goToSlide(currentSlide, false));
+
+        // ═══ READ MORE ═══
+        const aboutText = document.getElementById('about-text');
+        const readMoreBtn = document.getElementById('read-more-btn');
+        readMoreBtn.addEventListener('click', () => {
+            const isCollapsed = aboutText.classList.toggle('collapsed');
+            readMoreBtn.innerHTML = isCollapsed
+                ? 'Read More <i class="fas fa-chevron-down"></i>'
+                : 'Read Less <i class="fas fa-chevron-up"></i>';
+        });
+
+        // ═══ ROOM SELECTION ═══
+        document.querySelectorAll('.room-select-card').forEach(card => {
+            card.addEventListener('click', () => {
+                document.querySelectorAll('.room-select-card').forEach(c => {
+                    c.classList.remove('selected');
+                    c.querySelector('.room-check').innerHTML = '';
+                });
+                card.classList.add('selected');
+                card.querySelector('.room-check').innerHTML = '<i class="fas fa-check"></i>';
+                showToast(`${card.querySelector('.room-select-name').textContent} selected`);
+            });
+        });
+
+        // ═══ PRICE TYPE PILLS ═══
+        document.querySelectorAll('.price-type-pill').forEach(pill => {
+            pill.addEventListener('click', () => {
+                document.querySelectorAll('.price-type-pill').forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+            });
+        });
+
+        // ═══ WHATSAPP — Actually redirects ═══
+        document.getElementById('whatsapp-btn').addEventListener('click', () => {
+            const phone = '919876543210';
+            const message = encodeURIComponent('Hi! I am interested in Sunrise Boys PG in Koramangala, Bangalore. I saw your listing on HostelPGDekho. Can you share more details?');
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        });
+
+        // ═══ BOOK A VISIT ═══
+        document.getElementById('book-btn').addEventListener('click', () => {
+            showToast('Visit request sent! Owner will contact you soon.');
+        });
+
+        // ═══ MAP — Opens Google Maps ═══
+        document.getElementById('map-card').addEventListener('click', () => {
+            window.open('https://www.google.com/maps/search/Koramangala+5th+Block+Bangalore', '_blank');
+        });
+
+        // ═══ SCROLL ANIMATIONS ═══
+        const animObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), index * 60);
+                    animObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.anim-fade').forEach(el => animObserver.observe(el));
+
+        // ═══ REVIEW BARS ANIMATION ═══
+        const barObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.review-bar-fill').forEach((fill, i) => {
+                        const w = fill.dataset.width;
+                        fill.style.width = '0%';
+                        setTimeout(() => fill.style.width = w + '%', 150 + i * 100);
+                    });
+                    barObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        document.querySelectorAll('.review-summary').forEach(el => barObserver.observe(el));
+
+        // ═══ BUTTON RIPPLE EFFECT ═══
+        document.querySelectorAll('.cta-btn, .glass-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height) * 2;
+                ripple.style.cssText = `
+                    position:absolute;border-radius:50%;
+                    background:rgba(255,255,255,0.25);
+                    width:${size}px;height:${size}px;
+                    left:${e.clientX - rect.left - size/2}px;
+                    top:${e.clientY - rect.top - size/2}px;
+                    animation:ripple 0.6s ease-out;pointer-events:none;z-index:50;
+                `;
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        const rippleStyle = document.createElement('style');
+        rippleStyle.textContent = `@keyframes ripple { from { transform: scale(0); opacity: 1; } to { transform: scale(1); opacity: 0; } }`;
+        document.head.appendChild(rippleStyle);
+
+    })();
+    </script>
+</body>
+</html>

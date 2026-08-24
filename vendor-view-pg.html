@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>View PG — HostelPGDekho Vendor</title>
+    <meta name="description" content="Manage your PG listing on HostelPGDekho Vendor App.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #7C3AED; --primary-dark: #5B21B6; --primary-darker: #4C1D95;
+            --primary-light: #A78BFA; --primary-soft: #EDE9FE; --primary-bg: #F5F3FF;
+            --gradient: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+            --gradient-dark: linear-gradient(135deg, #1E1B4B 0%, #4C1D95 45%, #7C3AED 100%);
+            --accent: #F59E0B; --accent-light: #FEF3C7; --accent-dark: #D97706;
+            --success: #10B981; --success-light: #D1FAE5;
+            --danger: #EF4444; --danger-light: #FEE2E2;
+            --info: #3B82F6; --info-light: #DBEAFE;
+            --white: #FFFFFF;
+            --gray-50: #F9FAFB; --gray-100: #F3F4F6; --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB; --gray-400: #9CA3AF; --gray-500: #6B7280;
+            --gray-600: #4B5563; --gray-700: #374151; --gray-800: #1F2937; --gray-900: #111827;
+            --glass: rgba(255,255,255,0.65);
+            --glass-border: rgba(255,255,255,0.3);
+            --glass-strong: rgba(255,255,255,0.82);
+            --shadow-glass: 0 8px 32px rgba(124,58,237,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
+            --shadow-glass-lg: 0 16px 48px rgba(124,58,237,0.12), inset 0 1px 0 rgba(255,255,255,0.5);
+            --shadow-purple: 0 8px 32px rgba(124,58,237,0.25);
+            --radius-sm: 10px; --radius-md: 14px; --radius-lg: 18px; --radius-xl: 22px;
+            --radius-2xl: 28px; --radius-full: 9999px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #0F0B1A; color: var(--gray-800);
+            line-height: 1.6; -webkit-font-smoothing: antialiased;
+            min-height: 100vh; overflow-x: hidden;
+        }
+
+        .ambient-bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+        .ambient-orb { position: absolute; border-radius: 50%; filter: blur(80px); animation: orbFloat 20s ease-in-out infinite; }
+        .ambient-orb:nth-child(1) { width: 400px; height: 400px; background: rgba(124,58,237,0.15); top: -100px; right: -100px; }
+        .ambient-orb:nth-child(2) { width: 300px; height: 300px; background: rgba(245,158,11,0.1); bottom: 20%; left: -100px; animation-delay: -8s; }
+        @keyframes orbFloat { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(30px,-40px) scale(1.1)} 66%{transform:translate(-20px,20px) scale(.95)} }
+
+        .app-shell {
+            max-width: 440px; margin: 0 auto;
+            background: linear-gradient(180deg, #FAFAFE 0%, #F3F0FF 30%, #F9FAFB 60%, #FAFAFE 100%);
+            min-height: 100vh; position: relative; z-index: 1; overflow: hidden;
+        }
+        @media (min-width: 768px) {
+            body { padding: 24px 0; }
+            .app-shell { border-radius: 32px; min-height: auto; margin: 0 auto;
+                box-shadow: 0 0 0 1px rgba(124,58,237,0.08), 0 32px 80px rgba(0,0,0,0.3), 0 0 120px rgba(124,58,237,0.1); }
+        }
+
+        /* ═══ HEADER ═══ */
+        .vendor-header {
+            background: var(--gradient-dark); padding: 16px 16px 22px;
+            position: relative; overflow: hidden;
+        }
+        .vendor-header::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(245,158,11,0.08), transparent, rgba(167,139,250,0.1), transparent);
+            animation: liquidRotate 15s linear infinite;
+        }
+        @keyframes liquidRotate { to { transform: rotate(360deg); } }
+        .vendor-header::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(30,27,75,0.96), rgba(76,29,149,0.94), rgba(124,58,237,0.92));
+        }
+        .header-z { position: relative; z-index: 2; }
+
+        .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+        .glass-btn {
+            width: 42px; height: 42px;
+            background: rgba(255,255,255,0.1); backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius-md);
+            display: flex; align-items: center; justify-content: center;
+            color: white; cursor: pointer; transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+            font-size: 15px; position: relative; overflow: hidden;
+        }
+        .glass-btn::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.12), transparent);
+            pointer-events: none;
+        }
+        .glass-btn:hover { background: rgba(255,255,255,0.2); transform: translateY(-1px) scale(1.05); }
+        .glass-btn:active { transform: scale(0.95); }
+        .glass-btn.delete:hover { background: rgba(239,68,68,0.25); }
+        .header-actions { display: flex; gap: 8px; }
+
+        .listing-id {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(255,255,255,0.08); backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.1); padding: 5px 14px;
+            border-radius: var(--radius-full); font-size: 11px; color: rgba(255,255,255,0.65);
+            font-weight: 600; margin-bottom: 10px;
+        }
+        .listing-id i { font-size: 10px; color: var(--accent); }
+        .header-info h1 { font-size: 24px; font-weight: 900; color: white; line-height: 1.15; margin-bottom: 6px; letter-spacing: -0.5px; }
+        .header-info .location { display: flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.65); font-size: 13px; font-weight: 500; }
+        .header-info .location i { color: var(--accent); font-size: 12px; }
+
+        .status-row { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; }
+        .status-pill {
+            display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px;
+            border-radius: var(--radius-full); font-size: 12px; font-weight: 700;
+            backdrop-filter: blur(8px);
+        }
+        .status-pill.active { background: rgba(16,185,129,0.12); color: #34D399; border: 1px solid rgba(16,185,129,0.18); }
+        .status-pill.active .dot { width: 8px; height: 8px; background: #34D399; border-radius: 50%; animation: pulseDot 2s infinite; box-shadow: 0 0 8px rgba(16,185,129,0.5); }
+        @keyframes pulseDot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+        .pg-type-badge {
+            display: inline-flex; align-items: center; gap: 5px; padding: 6px 12px;
+            border-radius: var(--radius-full); font-size: 12px; font-weight: 600;
+            background: rgba(59,130,246,0.12); color: #60A5FA; border: 1px solid rgba(59,130,246,0.18);
+            backdrop-filter: blur(8px);
+        }
+
+        /* ═══ IMAGE CAROUSEL ═══ */
+        .image-carousel { position: relative; width: 100%; height: 230px; overflow: hidden; touch-action: pan-y; }
+        .carousel-track { display: flex; height: 100%; will-change: transform; cursor: grab; }
+        .carousel-track.grabbing { cursor: grabbing; }
+        .carousel-slide { min-width: 100%; height: 100%; flex-shrink: 0; }
+        .carousel-slide img { width: 100%; height: 100%; object-fit: cover; user-select: none; -webkit-user-drag: none; }
+        .carousel-bottom {
+            position: absolute; bottom: 12px; left: 12px; right: 12px;
+            display: flex; justify-content: space-between; align-items: flex-end; z-index: 10;
+        }
+        .carousel-dots-wrap { display: flex; gap: 5px; }
+        .carousel-dot {
+            width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4);
+            border: none; cursor: pointer; transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+        .carousel-dot.active { background: white; width: 28px; border-radius: var(--radius-full); box-shadow: 0 2px 12px rgba(255,255,255,0.4); }
+        .photo-badge {
+            background: rgba(0,0,0,0.4); backdrop-filter: blur(16px); color: white;
+            padding: 6px 14px; border-radius: var(--radius-full); font-size: 12px; font-weight: 600;
+            display: flex; align-items: center; gap: 6px; border: 1px solid rgba(255,255,255,0.1);
+        }
+        .carousel-nav {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 36px; height: 36px; background: rgba(255,255,255,0.85); backdrop-filter: blur(8px);
+            border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 10; font-size: 13px; color: var(--gray-700);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15); transition: all 0.3s cubic-bezier(0.4,0,0.2,1); opacity: 0;
+        }
+        .image-carousel:hover .carousel-nav { opacity: 1; }
+        .carousel-nav:hover { background: white; transform: translateY(-50%) scale(1.12); }
+        .carousel-nav:active { transform: translateY(-50%) scale(0.95); }
+        .carousel-nav.prev { left: 10px; } .carousel-nav.next { right: 10px; }
+
+        /* ═══ CONTENT ═══ */
+        .content { padding: 0 16px 130px; }
+
+        /* ═══ GLASS STAT CARDS ═══ */
+        .quick-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 20px 0; }
+        .stat-card {
+            background: var(--glass); backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid var(--glass-border); border-radius: var(--radius-xl);
+            padding: 16px 10px; text-align: center;
+            transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+            position: relative; overflow: hidden;
+            box-shadow: var(--shadow-glass);
+        }
+        .stat-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        }
+        .stat-card::after {
+            content: ''; position: absolute; top: 3px; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent); pointer-events: none;
+        }
+        .stat-card:nth-child(1)::before { background: var(--gradient); }
+        .stat-card:nth-child(2)::before { background: linear-gradient(135deg, #10B981, #059669); }
+        .stat-card:nth-child(3)::before { background: linear-gradient(135deg, #EF4444, #DC2626); }
+        .stat-card:nth-child(4)::before { background: linear-gradient(135deg, #F59E0B, #D97706); }
+        .stat-card:nth-child(5)::before { background: linear-gradient(135deg, #3B82F6, #2563EB); }
+        .stat-card:nth-child(6)::before { background: linear-gradient(135deg, #8B5CF6, #6D28D9); }
+        .stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-glass-lg); }
+        .stat-icon {
+            width: 40px; height: 40px; border-radius: var(--radius-md);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 8px; font-size: 16px; position: relative; z-index: 2;
+        }
+        .stat-card:nth-child(1) .stat-icon { background: linear-gradient(135deg,#EDE9FE,#DDD6FE); color: var(--primary); }
+        .stat-card:nth-child(2) .stat-icon { background: linear-gradient(135deg,#D1FAE5,#A7F3D0); color: var(--success); }
+        .stat-card:nth-child(3) .stat-icon { background: linear-gradient(135deg,#FEE2E2,#FECACA); color: var(--danger); }
+        .stat-card:nth-child(4) .stat-icon { background: linear-gradient(135deg,#FEF3C7,#FDE68A); color: var(--accent); }
+        .stat-card:nth-child(5) .stat-icon { background: linear-gradient(135deg,#DBEAFE,#BFDBFE); color: var(--info); }
+        .stat-card:nth-child(6) .stat-icon { background: linear-gradient(135deg,#EDE9FE,#DDD6FE); color: var(--primary-dark); }
+        .stat-value { font-size: 22px; font-weight: 900; color: var(--gray-900); line-height: 1.2; margin-bottom: 2px; position: relative; z-index: 2; }
+        .stat-label { font-size: 10px; font-weight: 600; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.5px; position: relative; z-index: 2; }
+
+        /* ═══ LIQUID GLASS REVENUE CARD ═══ */
+        .revenue-card {
+            background: var(--gradient-dark); border-radius: var(--radius-2xl);
+            padding: 24px; color: white; position: relative; overflow: hidden;
+            box-shadow: 0 20px 60px rgba(76,29,149,0.3), 0 0 80px rgba(124,58,237,0.08);
+            margin-bottom: 24px;
+        }
+        .revenue-card::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(245,158,11,0.1), transparent, rgba(167,139,250,0.12), transparent);
+            animation: liquidRotate 12s linear infinite;
+        }
+        .revenue-card::after {
+            content: ''; position: absolute; inset: 1px;
+            background: linear-gradient(135deg, rgba(30,27,75,0.95), rgba(76,29,149,0.92), rgba(124,58,237,0.9));
+            border-radius: calc(var(--radius-2xl) - 1px);
+        }
+        .revenue-inner { position: relative; z-index: 2; }
+        .revenue-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+        .revenue-title { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 1px; }
+        .revenue-period {
+            font-size: 11px; background: rgba(255,255,255,0.1); backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.12); padding: 4px 12px;
+            border-radius: var(--radius-full); color: rgba(255,255,255,0.75); font-weight: 600;
+        }
+        .revenue-amount { font-size: 36px; font-weight: 900; letter-spacing: -1.5px; text-shadow: 0 2px 20px rgba(255,255,255,0.1); }
+        .revenue-amount .currency { font-size: 22px; font-weight: 600; opacity: 0.8; }
+        .revenue-change {
+            display: inline-flex; align-items: center; gap: 4px;
+            background: rgba(16,185,129,0.12); color: #34D399;
+            padding: 5px 12px; border-radius: var(--radius-full);
+            font-size: 12px; font-weight: 700; margin-top: 8px;
+            border: 1px solid rgba(16,185,129,0.15);
+        }
+
+        /* ═══ SECTION ═══ */
+        .section { margin-bottom: 24px; }
+        .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+        .section-title {
+            font-size: 17px; font-weight: 800; color: var(--gray-900);
+            display: flex; align-items: center; gap: 8px; letter-spacing: -0.3px;
+        }
+        .section-title i { font-size: 15px; background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .section-badge {
+            background: var(--glass); backdrop-filter: blur(8px);
+            border: 1px solid var(--glass-border);
+            color: var(--primary); font-size: 11px; font-weight: 700;
+            padding: 4px 12px; border-radius: var(--radius-full);
+            box-shadow: var(--shadow-glass);
+        }
+        .section-divider { height: 1px; margin: 0 -16px 22px; background: linear-gradient(90deg, transparent, var(--gray-200), transparent); }
+        .view-all { font-size: 13px; font-weight: 600; color: var(--primary); cursor: pointer; display: flex; align-items: center; gap: 4px; transition: all 0.3s ease; text-decoration: none; }
+        .view-all:hover { gap: 8px; color: var(--primary-dark); }
+
+        /* ═══ GLASS ROOM CARDS ═══ */
+        .room-card {
+            background: var(--glass); backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1.5px solid var(--glass-border); border-radius: var(--radius-2xl);
+            padding: 18px; margin-bottom: 12px;
+            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+            position: relative; overflow: hidden;
+            box-shadow: var(--shadow-glass);
+        }
+        .room-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+            pointer-events: none;
+        }
+        .room-card:hover { border-color: var(--primary-light); transform: translateY(-3px); box-shadow: var(--shadow-glass-lg); }
+        .room-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; position: relative; z-index: 2; }
+        .room-type-info { display: flex; align-items: center; gap: 10px; }
+        .room-type-icon {
+            width: 46px; height: 46px; background: var(--gradient); border-radius: var(--radius-lg);
+            display: flex; align-items: center; justify-content: center; color: white; font-size: 17px;
+            box-shadow: var(--shadow-purple); position: relative; overflow: hidden;
+        }
+        .room-type-icon::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.2), transparent);
+            pointer-events: none;
+        }
+        .room-type-name { font-weight: 700; font-size: 15px; color: var(--gray-900); }
+        .room-type-sub { font-size: 12px; color: var(--gray-500); margin-top: 2px; }
+        .room-price { text-align: right; position: relative; z-index: 2; }
+        .room-price .amount { font-size: 20px; font-weight: 900; color: var(--primary); letter-spacing: -0.5px; }
+        .room-price .period { font-size: 11px; color: var(--gray-500); font-weight: 500; }
+        .room-stats { display: flex; gap: 8px; position: relative; z-index: 2; }
+        .room-stat {
+            flex: 1; background: rgba(255,255,255,0.5); backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: var(--radius-md); padding: 10px; text-align: center;
+        }
+        .room-stat-value { font-size: 17px; font-weight: 800; color: var(--gray-800); }
+        .room-stat-label { font-size: 10px; font-weight: 600; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.3px; }
+        .room-stat.occupied .room-stat-value { color: var(--success); }
+        .room-stat.vacant .room-stat-value { color: var(--accent-dark); }
+        .occupancy-bar-wrap { margin-top: 14px; position: relative; z-index: 2; }
+        .occupancy-label { display: flex; justify-content: space-between; margin-bottom: 6px; }
+        .occupancy-label span { font-size: 11px; font-weight: 600; color: var(--gray-500); }
+        .occupancy-label .percent { color: var(--primary); font-weight: 800; }
+        .occupancy-bar { width: 100%; height: 7px; background: rgba(0,0,0,0.06); border-radius: var(--radius-full); overflow: hidden; }
+        .occupancy-fill { height: 100%; border-radius: var(--radius-full); background: var(--gradient); transition: width 1.2s cubic-bezier(0.4,0,0.2,1); }
+
+        /* ═══ GLASS AMENITIES ═══ */
+        .amenities-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+        .amenity-item {
+            display: flex; flex-direction: column; align-items: center; gap: 7px;
+            padding: 14px 4px;
+            background: var(--glass); backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border); border-radius: var(--radius-lg);
+            transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+            box-shadow: var(--shadow-glass); position: relative; overflow: hidden;
+        }
+        .amenity-item::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent); pointer-events: none;
+        }
+        .amenity-item:hover { background: rgba(237,233,254,0.8); transform: translateY(-4px) scale(1.03); box-shadow: var(--shadow-glass-lg); }
+        .amenity-icon {
+            width: 40px; height: 40px; background: rgba(255,255,255,0.8); border-radius: var(--radius-md);
+            display: flex; align-items: center; justify-content: center; font-size: 17px; color: var(--primary);
+            transition: all 0.35s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.04); position: relative; z-index: 2;
+        }
+        .amenity-item:hover .amenity-icon { background: var(--gradient); color: white; box-shadow: var(--shadow-purple); transform: scale(1.1); }
+        .amenity-name { font-size: 10px; font-weight: 600; color: var(--gray-600); text-align: center; line-height: 1.3; position: relative; z-index: 2; }
+
+        /* ═══ GLASS RULES ═══ */
+        .rules-list { display: flex; flex-direction: column; gap: 8px; }
+        .rule-item {
+            display: flex; align-items: center; gap: 12px; padding: 13px 16px;
+            background: var(--glass); backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border); border-radius: var(--radius-lg);
+            transition: all 0.3s ease; box-shadow: var(--shadow-glass);
+            position: relative; overflow: hidden;
+        }
+        .rule-item::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent); pointer-events: none;
+        }
+        .rule-item:hover { transform: translateY(-1px); background: rgba(237,233,254,0.7); }
+        .rule-icon {
+            width: 34px; height: 34px; background: rgba(255,255,255,0.8); border-radius: var(--radius-sm);
+            display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--primary);
+            flex-shrink: 0; position: relative; z-index: 2;
+        }
+        .rule-text { font-size: 13px; font-weight: 600; color: var(--gray-700); position: relative; z-index: 2; }
+
+        /* ═══ GLASS INQUIRY CARDS ═══ */
+        .inquiry-card {
+            background: var(--glass); backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid var(--glass-border); border-radius: var(--radius-xl);
+            padding: 14px 16px; margin-bottom: 10px;
+            display: flex; align-items: center; gap: 12px;
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+            box-shadow: var(--shadow-glass); position: relative; overflow: hidden;
+        }
+        .inquiry-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent); pointer-events: none;
+        }
+        .inquiry-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-glass-lg); }
+        .inquiry-avatar {
+            width: 46px; height: 46px; border-radius: var(--radius-md);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 16px; color: white; flex-shrink: 0;
+            position: relative; z-index: 2; overflow: hidden;
+        }
+        .inquiry-avatar::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.2), transparent); pointer-events: none;
+        }
+        .inquiry-avatar.blue { background: linear-gradient(135deg, #3B82F6, #2563EB); }
+        .inquiry-avatar.purple { background: var(--gradient); }
+        .inquiry-avatar.amber { background: linear-gradient(135deg, #F59E0B, #D97706); }
+        .inquiry-avatar.green { background: linear-gradient(135deg, #10B981, #059669); }
+        .inquiry-info { flex: 1; min-width: 0; position: relative; z-index: 2; }
+        .inquiry-name { font-size: 14px; font-weight: 700; color: var(--gray-800); }
+        .inquiry-detail { font-size: 12px; color: var(--gray-500); margin-top: 2px; font-weight: 500; }
+        .inquiry-meta { text-align: right; flex-shrink: 0; position: relative; z-index: 2; }
+        .inquiry-date { font-size: 11px; color: var(--gray-400); font-weight: 500; }
+        .inquiry-status {
+            display: inline-block; font-size: 10px; font-weight: 700;
+            padding: 3px 10px; border-radius: var(--radius-full); margin-top: 4px;
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .inquiry-status.new { background: var(--info-light); color: var(--info); }
+        .inquiry-status.responded { background: var(--accent-light); color: #B45309; }
+        .inquiry-status.booked { background: var(--success-light); color: #047857; }
+
+        /* ═══ GLASS MAP ═══ */
+        .map-card {
+            width: 100%; height: 170px;
+            background: linear-gradient(135deg, rgba(224,231,255,0.8), rgba(199,210,254,0.8));
+            backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.5);
+            border-radius: var(--radius-2xl); display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 8px; overflow: hidden;
+            position: relative; margin-bottom: 12px; cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4,0,0.2,1); box-shadow: var(--shadow-glass);
+        }
+        .map-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent); pointer-events: none;
+        }
+        .map-card:hover { transform: scale(1.01); box-shadow: var(--shadow-glass-lg); }
+        .map-card i { font-size: 30px; color: var(--primary); position: relative; z-index: 2; }
+        .map-card span { font-size: 14px; font-weight: 700; color: var(--primary-dark); position: relative; z-index: 2; }
+        .address-row {
+            display: flex; align-items: flex-start; gap: 10px; margin-top: 4px;
+            padding: 13px 16px;
+            background: var(--glass); backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border); border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-glass);
+        }
+        .address-row i { color: var(--primary); margin-top: 3px; }
+        .address-text { font-size: 13px; color: var(--gray-600); line-height: 1.6; font-weight: 500; }
+
+        /* ═══ GLASS BOTTOM BAR ═══ */
+        .bottom-bar {
+            position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 100%; max-width: 440px;
+            background: rgba(255,255,255,0.72); backdrop-filter: blur(30px) saturate(200%);
+            -webkit-backdrop-filter: blur(30px) saturate(200%);
+            border-top: 1px solid rgba(255,255,255,0.5);
+            padding: 12px 16px; display: flex; gap: 10px; z-index: 100;
+            box-shadow: 0 -8px 40px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.7);
+        }
+        .bottom-btn {
+            flex: 1; padding: 15px; border-radius: var(--radius-lg);
+            font-size: 14px; font-weight: 700; cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            border: none; position: relative; overflow: hidden; font-family: 'Inter', sans-serif;
+        }
+        .bottom-btn::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.2), transparent); pointer-events: none;
+        }
+        .bottom-btn.primary { background: var(--gradient); color: white; box-shadow: var(--shadow-purple); }
+        .bottom-btn.primary:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(124,58,237,0.4); }
+        .bottom-btn.primary:active { transform: scale(0.97); }
+        .bottom-btn.secondary {
+            background: var(--glass); backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border); color: var(--gray-700);
+            box-shadow: var(--shadow-glass);
+        }
+        .bottom-btn.secondary:hover { transform: translateY(-3px); box-shadow: var(--shadow-glass-lg); }
+        .bottom-btn.secondary:active { transform: scale(0.97); }
+
+        /* ═══ ANIMATIONS ═══ */
+        .anim-fade { opacity: 0; transform: translateY(24px); transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1), transform 0.6s cubic-bezier(0.4,0,0.2,1); }
+        .anim-fade.visible { opacity: 1; transform: translateY(0); }
+
+        .toast {
+            position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(20px);
+            background: var(--gray-900); color: white;
+            padding: 12px 24px; border-radius: var(--radius-full);
+            font-size: 13px; font-weight: 600; z-index: 200;
+            display: flex; align-items: center; gap: 8px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+            opacity: 0; transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+            pointer-events: none;
+        }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+        .toast i { color: var(--success); }
+
+        ::-webkit-scrollbar { width: 3px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius: var(--radius-full); }
+    </style>
+</head>
+<body>
+    <div class="ambient-bg"><div class="ambient-orb"></div><div class="ambient-orb"></div></div>
+    <div class="app-shell">
+        <!-- ═══ HEADER ═══ -->
+        <header class="vendor-header">
+            <div class="header-z">
+                <div class="header-top">
+                    <button class="glass-btn" id="back-btn" aria-label="Go back"><i class="fas fa-arrow-left"></i></button>
+                    <div class="header-actions">
+                        <button class="glass-btn" id="edit-btn" aria-label="Edit"><i class="fas fa-pen-to-square"></i></button>
+                        <button class="glass-btn" id="share-btn" aria-label="Share"><i class="fas fa-share-nodes"></i></button>
+                        <button class="glass-btn delete" id="delete-btn" aria-label="Delete"><i class="fas fa-trash-can"></i></button>
+                    </div>
+                </div>
+                <div class="header-info">
+                    <div class="listing-id"><i class="fas fa-fingerprint"></i> Listing #HPD-28491</div>
+                    <h1>Sunrise Boys PG</h1>
+                    <div class="location"><i class="fas fa-location-dot"></i> Koramangala, 5th Block, Bangalore</div>
+                </div>
+                <div class="status-row">
+                    <div class="status-pill active"><div class="dot"></div> Active Listing</div>
+                    <div class="pg-type-badge"><i class="fas fa-mars"></i> Boys PG</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ═══ CAROUSEL ═══ -->
+        <div class="image-carousel" id="vendor-carousel">
+            <div class="carousel-track" id="carousel-track">
+                <div class="carousel-slide"><img src="images/pg_room_hero.jpg" alt="PG Room" draggable="false"></div>
+                <div class="carousel-slide"><img src="images/pg_common_area.jpg" alt="Common Area" draggable="false"></div>
+                <div class="carousel-slide"><img src="images/pg_kitchen.jpg" alt="Kitchen" draggable="false"></div>
+                <div class="carousel-slide"><img src="images/pg_exterior.jpg" alt="Exterior" draggable="false"></div>
+            </div>
+            <button class="carousel-nav prev" id="carousel-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-nav next" id="carousel-next"><i class="fas fa-chevron-right"></i></button>
+            <div class="carousel-bottom">
+                <div class="carousel-dots-wrap" id="carousel-dots">
+                    <button class="carousel-dot active" data-index="0"></button>
+                    <button class="carousel-dot" data-index="1"></button>
+                    <button class="carousel-dot" data-index="2"></button>
+                    <button class="carousel-dot" data-index="3"></button>
+                </div>
+                <div class="photo-badge" id="photo-badge"><i class="fas fa-camera"></i> 1 / 4</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Stats -->
+            <div class="quick-stats anim-fade">
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-door-open"></i></div><div class="stat-value">24</div><div class="stat-label">Total Rooms</div></div>
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-bed"></i></div><div class="stat-value">19</div><div class="stat-label">Occupied</div></div>
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-door-closed"></i></div><div class="stat-value">5</div><div class="stat-label">Vacant</div></div>
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-eye"></i></div><div class="stat-value">1.2K</div><div class="stat-label">Views</div></div>
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-message"></i></div><div class="stat-value">38</div><div class="stat-label">Inquiries</div></div>
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-star"></i></div><div class="stat-value">4.5</div><div class="stat-label">Rating</div></div>
+            </div>
+
+            <!-- Revenue -->
+            <div class="revenue-card anim-fade">
+                <div class="revenue-inner">
+                    <div class="revenue-header"><span class="revenue-title">Monthly Revenue</span><span class="revenue-period">Aug 2026</span></div>
+                    <div class="revenue-amount"><span class="currency">₹</span>1,52,000</div>
+                    <div class="revenue-change"><i class="fas fa-arrow-trend-up"></i> +12.5% vs last month</div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Room Types -->
+            <div class="section anim-fade">
+                <div class="section-header"><div class="section-title"><i class="fas fa-bed"></i> Room Types & Pricing</div><span class="section-badge">3 Types</span></div>
+                <div class="room-card"><div class="room-card-header"><div class="room-type-info"><div class="room-type-icon"><i class="fas fa-user"></i></div><div><div class="room-type-name">Single Occupancy</div><div class="room-type-sub">Private room · Attached bath</div></div></div><div class="room-price"><div class="amount">₹8,000</div><div class="period">/month</div></div></div><div class="room-stats"><div class="room-stat"><div class="room-stat-value">8</div><div class="room-stat-label">Total</div></div><div class="room-stat occupied"><div class="room-stat-value">7</div><div class="room-stat-label">Occupied</div></div><div class="room-stat vacant"><div class="room-stat-value">1</div><div class="room-stat-label">Vacant</div></div></div><div class="occupancy-bar-wrap"><div class="occupancy-label"><span>Occupancy</span><span class="percent">87.5%</span></div><div class="occupancy-bar"><div class="occupancy-fill" data-width="87.5"></div></div></div></div>
+                <div class="room-card"><div class="room-card-header"><div class="room-type-info"><div class="room-type-icon"><i class="fas fa-user-group"></i></div><div><div class="room-type-name">Double Sharing</div><div class="room-type-sub">Shared room · Common bath</div></div></div><div class="room-price"><div class="amount">₹5,500</div><div class="period">/month</div></div></div><div class="room-stats"><div class="room-stat"><div class="room-stat-value">10</div><div class="room-stat-label">Total</div></div><div class="room-stat occupied"><div class="room-stat-value">8</div><div class="room-stat-label">Occupied</div></div><div class="room-stat vacant"><div class="room-stat-value">2</div><div class="room-stat-label">Vacant</div></div></div><div class="occupancy-bar-wrap"><div class="occupancy-label"><span>Occupancy</span><span class="percent">80%</span></div><div class="occupancy-bar"><div class="occupancy-fill" data-width="80"></div></div></div></div>
+                <div class="room-card"><div class="room-card-header"><div class="room-type-info"><div class="room-type-icon"><i class="fas fa-users"></i></div><div><div class="room-type-name">Triple Sharing</div><div class="room-type-sub">Shared room · Common bath</div></div></div><div class="room-price"><div class="amount">₹4,000</div><div class="period">/month</div></div></div><div class="room-stats"><div class="room-stat"><div class="room-stat-value">6</div><div class="room-stat-label">Total</div></div><div class="room-stat occupied"><div class="room-stat-value">4</div><div class="room-stat-label">Occupied</div></div><div class="room-stat vacant"><div class="room-stat-value">2</div><div class="room-stat-label">Vacant</div></div></div><div class="occupancy-bar-wrap"><div class="occupancy-label"><span>Occupancy</span><span class="percent">66.7%</span></div><div class="occupancy-bar"><div class="occupancy-fill" data-width="66.7"></div></div></div></div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Amenities -->
+            <div class="section anim-fade">
+                <div class="section-header"><div class="section-title"><i class="fas fa-sparkles"></i> Amenities</div><span class="section-badge">12</span></div>
+                <div class="amenities-grid">
+                    <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-wifi"></i></div><span class="amenity-name">WiFi</span></div>
+                    <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-snowflake"></i></div><span class="amenity-name">AC</span></div>
+                    <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-utensils"></i></div><span class="amenity-name">Food</span></div>
+                    <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-shirt"></i></div><span class="amenity-name">Laundry</span></div>
+                    <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-car"></i></div><span class="amenity-name">Parking</span></div>
+                    <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-bolt"></i></div><span class="amenity-name">Backup</span></div>
+                    <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-shield-halved"></i></div><span class="amenity-name">Security</span></div>
+                    <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-broom"></i></div><span class="amenity-name">Cleaning</span></div>
+                    <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-tv"></i></div><span class="amenity-name">TV</span></div>
+                    <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-bottle-water"></i></div><span class="amenity-name">RO Water</span></div>
+                    <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-fire-burner"></i></div><span class="amenity-name">Kitchen</span></div>
+                    <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-video"></i></div><span class="amenity-name">CCTV</span></div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- House Rules -->
+            <div class="section anim-fade">
+                <div class="section-header"><div class="section-title"><i class="fas fa-clipboard-list"></i> House Rules</div></div>
+                <div class="rules-list">
+                    <div class="rule-item"><div class="rule-icon"><i class="fas fa-clock"></i></div><span class="rule-text">Gate closes at 10:30 PM</span></div>
+                    <div class="rule-item"><div class="rule-icon"><i class="fas fa-user-xmark"></i></div><span class="rule-text">No visitors allowed after 8 PM</span></div>
+                    <div class="rule-item"><div class="rule-icon"><i class="fas fa-ban-smoking"></i></div><span class="rule-text">No smoking inside premises</span></div>
+                    <div class="rule-item"><div class="rule-icon"><i class="fas fa-volume-xmark"></i></div><span class="rule-text">Quiet hours: 10 PM – 7 AM</span></div>
+                    <div class="rule-item"><div class="rule-icon"><i class="fas fa-id-card"></i></div><span class="rule-text">Valid ID proof required for check-in</span></div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Inquiries -->
+            <div class="section anim-fade">
+                <div class="section-header"><div class="section-title"><i class="fas fa-inbox"></i> Recent Inquiries</div><a class="view-all" href="#">View All <i class="fas fa-chevron-right" style="font-size:10px;"></i></a></div>
+                <div class="inquiry-card"><div class="inquiry-avatar blue">RK</div><div class="inquiry-info"><div class="inquiry-name">Rahul Kumar</div><div class="inquiry-detail">Single Room · IT Professional</div></div><div class="inquiry-meta"><div class="inquiry-date">2 hrs ago</div><div class="inquiry-status new">New</div></div></div>
+                <div class="inquiry-card"><div class="inquiry-avatar purple">AS</div><div class="inquiry-info"><div class="inquiry-name">Amit Sharma</div><div class="inquiry-detail">Double Sharing · Student</div></div><div class="inquiry-meta"><div class="inquiry-date">5 hrs ago</div><div class="inquiry-status responded">Responded</div></div></div>
+                <div class="inquiry-card"><div class="inquiry-avatar green">PV</div><div class="inquiry-info"><div class="inquiry-name">Priya Verma</div><div class="inquiry-detail">Single Room · Designer</div></div><div class="inquiry-meta"><div class="inquiry-date">1 day ago</div><div class="inquiry-status booked">Booked</div></div></div>
+                <div class="inquiry-card"><div class="inquiry-avatar amber">VR</div><div class="inquiry-info"><div class="inquiry-name">Vikash Rajan</div><div class="inquiry-detail">Triple Sharing · Student</div></div><div class="inquiry-meta"><div class="inquiry-date">2 days ago</div><div class="inquiry-status new">New</div></div></div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Location -->
+            <div class="section anim-fade">
+                <div class="section-header"><div class="section-title"><i class="fas fa-map-location-dot"></i> Location</div></div>
+                <div class="map-card" id="map-card"><i class="fas fa-map-location-dot"></i><span>View on Google Maps</span></div>
+                <div class="address-row"><i class="fas fa-location-dot"></i><div class="address-text">#42, 3rd Cross, 5th Block, Koramangala,<br>Bangalore, Karnataka – 560095</div></div>
+            </div>
+        </div>
+
+        <!-- ═══ BOTTOM BAR ═══ -->
+        <div class="bottom-bar">
+            <button class="bottom-btn secondary" id="share-listing-btn"><i class="fas fa-share-nodes"></i> Share</button>
+            <button class="bottom-btn primary" id="edit-pg-btn"><i class="fas fa-pen-to-square"></i> Edit PG</button>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"><i class="fas fa-circle-check"></i><span></span></div>
+
+    <script>
+    (function() {
+        'use strict';
+
+        const toast = document.getElementById('toast');
+        function showToast(msg) {
+            toast.querySelector('span').textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
+        // ═══ BACK BUTTON ═══
+        document.getElementById('back-btn').addEventListener('click', () => {
+            if (window.history.length > 1) { window.history.back(); }
+            else { showToast('Navigating back to My PGs...'); }
+        });
+
+        // ═══ EDIT BUTTON ═══
+        document.getElementById('edit-btn').addEventListener('click', () => showToast('Opening Edit PG form...'));
+        document.getElementById('edit-pg-btn').addEventListener('click', () => showToast('Opening Edit PG form...'));
+
+        // ═══ DELETE BUTTON ═══
+        document.getElementById('delete-btn').addEventListener('click', () => {
+            if (confirm('Are you sure you want to delete this PG listing? This action cannot be undone.')) {
+                showToast('PG listing deleted');
+            }
+        });
+
+        // ═══ SHARE BUTTONS ═══
+        async function handleShare() {
+            const shareData = {
+                title: 'Sunrise Boys PG — HostelPGDekho Vendor',
+                text: 'Check out my PG listing on HostelPGDekho — Sunrise Boys PG in Koramangala, Bangalore.',
+                url: window.location.href
+            };
+            try {
+                if (navigator.share) { await navigator.share(shareData); }
+                else { await navigator.clipboard.writeText(shareData.url); showToast('Link copied to clipboard!'); }
+            } catch(e) {
+                try { await navigator.clipboard.writeText(window.location.href); showToast('Link copied to clipboard!'); }
+                catch(e2) { showToast('Could not share'); }
+            }
+        }
+        document.getElementById('share-btn').addEventListener('click', handleShare);
+        document.getElementById('share-listing-btn').addEventListener('click', handleShare);
+
+        // ═══ MAP ═══
+        document.getElementById('map-card').addEventListener('click', () => {
+            window.open('https://www.google.com/maps/search/Koramangala+5th+Block+Bangalore', '_blank');
+        });
+
+        // ═══ CAROUSEL — Full drag/swipe ═══
+        const track = document.getElementById('carousel-track');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const photoBadge = document.getElementById('photo-badge');
+        const totalSlides = document.querySelectorAll('.carousel-slide').length;
+        let currentSlide = 0, isDragging = false, startX = 0, currentTranslate = 0, prevTranslate = 0;
+
+        function getSlideWidth() { return track.parentElement.clientWidth; }
+        function setPosition() { track.style.transform = `translateX(${currentTranslate}px)`; }
+
+        function goToSlide(index, animate = true) {
+            currentSlide = ((index % totalSlides) + totalSlides) % totalSlides;
+            track.style.transition = animate ? 'transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)' : 'none';
+            currentTranslate = -currentSlide * getSlideWidth();
+            prevTranslate = currentTranslate;
+            setPosition();
+            dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+            photoBadge.innerHTML = `<i class="fas fa-camera"></i> ${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        document.getElementById('carousel-prev').addEventListener('click', () => { goToSlide(currentSlide - 1); resetAuto(); });
+        document.getElementById('carousel-next').addEventListener('click', () => { goToSlide(currentSlide + 1); resetAuto(); });
+        dots.forEach(dot => dot.addEventListener('click', () => { goToSlide(+dot.dataset.index); resetAuto(); }));
+
+        track.addEventListener('touchstart', tStart, { passive: true });
+        track.addEventListener('touchmove', tMove, { passive: false });
+        track.addEventListener('touchend', tEnd);
+        track.addEventListener('mousedown', tStart);
+        track.addEventListener('mousemove', tMove);
+        track.addEventListener('mouseup', tEnd);
+        track.addEventListener('mouseleave', () => { if (isDragging) tEnd(); });
+
+        function tStart(e) {
+            isDragging = true;
+            startX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+            track.style.transition = 'none';
+            track.classList.add('grabbing');
+        }
+        function tMove(e) {
+            if (!isDragging) return;
+            const x = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+            currentTranslate = prevTranslate + (x - startX);
+            setPosition();
+            if (e.cancelable) e.preventDefault();
+        }
+        function tEnd() {
+            isDragging = false;
+            track.classList.remove('grabbing');
+            const moved = currentTranslate - prevTranslate;
+            if (moved < -50 && currentSlide < totalSlides - 1) goToSlide(currentSlide + 1);
+            else if (moved > 50 && currentSlide > 0) goToSlide(currentSlide - 1);
+            else goToSlide(currentSlide);
+            resetAuto();
+        }
+
+        let autoTimer;
+        function startAuto() { autoTimer = setInterval(() => goToSlide(currentSlide + 1), 4500); }
+        function resetAuto() { clearInterval(autoTimer); startAuto(); }
+        startAuto();
+        window.addEventListener('resize', () => goToSlide(currentSlide, false));
+
+        // ═══ SCROLL ANIMATIONS ═══
+        const animObs = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 60);
+                    animObs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.anim-fade').forEach(el => animObs.observe(el));
+
+        // ═══ OCCUPANCY BAR ANIMATION ═══
+        const barObs = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.occupancy-fill').forEach((fill, i) => {
+                        const w = fill.dataset.width;
+                        fill.style.width = '0%';
+                        setTimeout(() => fill.style.width = w + '%', 200 + i * 150);
+                    });
+                    barObs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        document.querySelectorAll('.section').forEach(el => {
+            if (el.querySelector('.occupancy-fill')) barObs.observe(el);
+        });
+
+        // ═══ RIPPLE EFFECT ═══
+        document.querySelectorAll('.bottom-btn, .glass-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height) * 2;
+                ripple.style.cssText = `position:absolute;border-radius:50%;background:rgba(255,255,255,0.25);width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px;animation:ripple .6s ease-out;pointer-events:none;z-index:50;`;
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        const rs = document.createElement('style');
+        rs.textContent = `@keyframes ripple{from{transform:scale(0);opacity:1}to{transform:scale(1);opacity:0}}`;
+        document.head.appendChild(rs);
+    })();
+    </script>
+</body>
+</html>
